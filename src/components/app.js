@@ -1,20 +1,31 @@
-import React from 'react';
-import { Button } from 'antd';
-import doggoImage from '../images/doggo.jpg';
-import '../stylesheets/app.css';
+import React from 'react'
+import { Col, Row } from 'antd'
+import doggoImage from '../images/doggo.jpg'
+import '../stylesheets/app.css'
 
-function App() {
+function App () {
   return (
     <div className="app">
-      <h1>Doggo Search</h1>
+      <nav>
+        <Row>
+          <Col>
+            <img src={doggoImage} width="64" alt=""/>
+          </Col>
+          <Col>
+            <h1>Doggo Search</h1>
+          </Col>
+          <Col flex={'auto'}/>
+          <Col>
+            <Row align={'bottom'}>
+              <a>Search</a>
+              <a>My Saved Dogs</a>
+            </Row>
+          </Col>
+        </Row>
+      </nav>
       <p>All great things have small beginnings.</p>
-      <img src={doggoImage} width="600" alt="" />
-      <p>
-        Be sure to take advantage of <a href="src/components/app">Ant Design's components</a>:
-      </p>
-      <Button type="primary">Example Button</Button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
