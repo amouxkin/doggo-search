@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { capitalise } from '../utilities/string'
 
 export const fetchCategories = async () => {
   let { data } = await axios.get(
@@ -7,9 +8,12 @@ export const fetchCategories = async () => {
 
   return Object.entries(data.message).reduce((previousValue, [breed, subBreeds]) => {
     // Pushes the breed name
-    previousValue.push(breed)
+    previousValue.push({ label: capitalise(breed), value: breed })
     // Pushes all the sub-breed
-    if (!!subBreeds.length) subBreeds.forEach(subBreed => previousValue.push(`${breed}/${subBreed}`))
+    if (!!subBreeds.length) subBreeds.forEach(subBreed => previousValue.push({
+      label: capitalise(subBreed),
+      value: `${breed}/${subBreed}`
+    }))
     return previousValue
   }, [])
 }
