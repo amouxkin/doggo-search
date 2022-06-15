@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { capitalise } from '../utilities/string'
+import { capitalise } from '../utilities'
 
 export const fetchCategories = async () => {
   let { data } = await axios.get(
