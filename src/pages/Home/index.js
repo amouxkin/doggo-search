@@ -9,10 +9,11 @@ import { Filter } from './Filter'
 export const Home = () => {
   const { data, isFetching, isSuccess } = useQuery('categories', fetchCategories)
   const [selectedCategories, setSelectedCategories] = useState([])
+  const [filterTree, setFilterTree] = useState()
   if (isFetching) return <LoadingIcon/>
 
   if (isSuccess) return <CategoriesContext.Provider
-    value={{ allCategories: data, setSelectedCategories, selectedCategories }}>
+    value={{ allCategories: data, setSelectedCategories, selectedCategories, filterTree, setFilterTree }}>
     <Search/>
     <Filter/>
   </CategoriesContext.Provider>
