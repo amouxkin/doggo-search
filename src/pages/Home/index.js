@@ -5,12 +5,15 @@ import { CategoriesContext } from '../../store/categories'
 import { fetchCategories } from '../../queries'
 import { Search } from './Search'
 import { Filter } from './Filter'
-import { Col, Row } from 'antd'
+import { Col, Layout, Row } from 'antd'
+import { ImageGrid } from './ImageGrid'
+import Sider from 'antd/es/layout/Sider'
+import { Content } from 'antd/es/layout/layout'
 
 export const Home = () => {
   const { data, isFetching, isSuccess } = useQuery('categories', fetchCategories)
   const [selectedCategories, setSelectedCategories] = useState([])
-  const [filteredCategories, setFilteredCategories] = useState([])
+  const [filteredCategories, setFilteredCategories] = useState(['all'])
   const [filterTree, setFilterTree] = useState()
   if (isFetching) return <LoadingIcon/>
 
@@ -25,13 +28,15 @@ export const Home = () => {
       setFilteredCategories
     }}>
     <Search/>
-    <Row>
-      <Col>
+    <Layout style={{ marginTop: 20 }}>
+      <Sider style={{height: '100%'}}>
         <Filter/>
-      </Col>
-      <Col>
-
-      </Col>
-    </Row>
+      </Sider>
+      <Layout>
+        <Content style={{padding: 10}}>
+          <ImageGrid/>
+        </Content>
+      </Layout>
+    </Layout>
   </CategoriesContext.Provider>
 }

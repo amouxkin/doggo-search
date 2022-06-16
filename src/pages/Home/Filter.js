@@ -24,7 +24,7 @@ export const Filter = () => {
       const [breed, subBreed] = uniqueSubBreed.split('/')
       if (!accumulator[breed]) accumulator[breed] = {
         title: breed,
-        key: ['0', Object.keys(accumulator).length].join('-'),
+        key: breed,
         children: []
       }
 
@@ -68,9 +68,11 @@ export const Filter = () => {
     showLine
     checkable
     blockNode
-    defaultExpandedKeys={[]}
+    defaultCheckedKeys={['all']}
     onCheck={(keys) => {
-      if (keys.includes('all')) {
+      if (filteredCategories.includes('all') && keys.includes('all') && keys.length > 1) {
+        return setFilteredCategories(keys.filter(key => key !== 'all'))
+      } else if (keys.includes('all')) {
         return setFilteredCategories(['all'])
       }
       setFilteredCategories(keys)
