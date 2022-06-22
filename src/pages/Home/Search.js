@@ -5,7 +5,7 @@ import { useCategoriesStore } from '../../store/categories'
 
 export const Search = () => {
   const { allCategories, setSelectedCategories, selectedCategories } = useCategoriesStore()
-  const { refetch, isFetching } = useQuery('images', async () => await fetchImages(selectedCategories), { enabled: false })
+  const { refetch, isFetching,  } = useQuery('images', async () => await fetchImages(selectedCategories), { enabled: false })
 
   return <Row justify={'center'}>
     <Col>

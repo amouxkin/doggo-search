@@ -5,4 +5,7 @@ export const fetchImages = async (breeds) => await axios.all(breeds.map(breed =>
   images: response.data.message
 }))))
 
+export const fetchRandomImages = async () => await axios.get('https://dog.ceo/api/breeds/image/random/12').then((response) => {
+  return response.data.message
+})
 

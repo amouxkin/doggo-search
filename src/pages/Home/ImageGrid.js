@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useQuery } from 'react-query'
 import { Col, Image, Row, Tag } from 'antd'
 import { useCategoriesStore } from '../../store/categories'
+import { DoggoImage } from './DoggoImage'
 
 const interlaceImages = (breedList = [{ breed: '', images: [''] }]) => {
   if (breedList.length === 0) return []
@@ -60,18 +61,11 @@ export const ImageGrid = () => {
   return <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} justify={data.length ? undefined : 'space-around'}
               align="middle">
 
-    {data.length ? filteredImages.map(imageUrl => {
-      const [breed, subBreed] = imageUrl.split('/').splice(4, 1)[0].split('-')
-      return <Col span={3}>
-        <Row>
-          <Image key={imageUrl} width={200} src={imageUrl}/>
-        </Row>
-        <Row>
-          <Tag color={'success'}>{breed}</Tag>
-          {subBreed && <Tag color="success">{subBreed}</Tag>}
-        </Row>
-      </Col>
-    }) : <Col className="gutter-row" span={6}>'Search to View Images' </Col>}
+    {
+      data.length ?
+        filteredImages.map(imageUrl => <DoggoImage imageUrl={imageUrl}/>) :
+        <Col className="gutter-row"
+             span={6}>'Search to View Images' </Col>}
 
   </Row>
 }
